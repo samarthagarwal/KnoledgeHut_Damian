@@ -22,113 +22,72 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="danger">
+<ion-content>
 
-  <ion-list lines="none">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Developer, Instructor</ion-card-subtitle>
+      <ion-card-title>Samarth Agarwal</ion-card-title>
+    </ion-card-header>
 
-    <ion-item-divider color="danger">
-      <ion-label>More Users</ion-label>
-    </ion-item-divider>
+    <ion-img src="https://robohash.org/1?bgset=bg1"></ion-img>
 
-    <ion-item-sliding>
+    <ion-card-content>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid adipisci natus dicta molestiae impedit, modi vel nihil, veniam temporibus deserunt expedita ab. Asperiores, est dolore?
+    </ion-card-content>
+    
+  </ion-card>
+
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" placeholder="john@doe.com"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="number" min="0.00" max="10000.00" step="0.01"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Occupation</ion-label>
+      <ion-select okText="Yes" cancelText="No" interface="action-sheet" multiple="true">
+        <ion-select-option>
+          Software Professional
+        </ion-select-option>
+        <ion-select-option>
+          Doctor
+        </ion-select-option>
+        <ion-select-option>
+          Other
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+
+    <ion-radio-group>
+
+      <ion-list-header>
+        <ion-label>Send me the newsletter</ion-label>
+      </ion-list-header>
+
       <ion-item>
-        <ion-avatar slot="start">
-          <ion-img src="https://robohash.org/3"></ion-img>
-        </ion-avatar>
-        <ion-label>
-          <h2>Samarth Agarwal</h2>
-          <h3>KnowledgeHut</h3>
-          <p>Developer, Instructor</p>
-        </ion-label>
-        <ion-button slot="end" fill="clear" color="danger">
-          <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
-        </ion-button>
+        <ion-label>Yes</ion-label>
+        <ion-radio slot="start" color="success" value="yes"></ion-radio>
       </ion-item>
-
-      <ion-item-options side="start">
-        <ion-item-option color="danger">
-          <ion-icon name="trash" slot="icon-only"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="warning">
-          Flag
-        </ion-item-option>
-      </ion-item-options>
-
-      <ion-item-options side="end">
-        <ion-item-option color="success">
-          Archive
-        </ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>
+      <ion-item>
+        <ion-label>No</ion-label>
+        <ion-radio slot="start" color="danger" value="no"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
 
     <ion-item>
-      <ion-avatar slot="end">
-        <ion-img src="https://robohash.org/3"></ion-img>
-      </ion-avatar>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <ion-img src="https://robohash.org/3"></ion-img>
-      </ion-thumbnail>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail slot="end">
-        <ion-img src="https://robohash.org/3"></ion-img>
-      </ion-thumbnail>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
+      <ion-checkbox slot="start" color="danger"></ion-checkbox>
+      <ion-label>I accept the terms of use</ion-label>
     </ion-item>
 
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>This is an item</ion-label>
-    </ion-item>
+
   </ion-list>
 
 </ion-content>
