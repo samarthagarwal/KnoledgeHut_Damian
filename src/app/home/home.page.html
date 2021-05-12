@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar [color]="favoriteColor">
+  <ion-toolbar color="danger">
     <ion-buttons slot="start">
       <ion-button>
         <ion-icon slot="icon-only" name="menu"></ion-icon>
@@ -7,11 +7,11 @@
     </ion-buttons>
 
     <ion-title>
-      {{ getName(3) }}
+      KnowledgeHut
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button (click)="changeColor()">
+      <ion-button>
         <ion-icon name="settings-sharp" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -24,12 +24,50 @@
 
 <ion-content>
 
-  <ion-item>
-    <ion-label position="floating">
-      Enter Color
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="favoriteColor"></ion-input>
-  </ion-item>
+  <ion-list lines="none">
+    <ion-card *ngFor="let person of people">
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img [src]="'https://robohash.org/' + person.profile_image"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ person.name }}</h2>
+          <p>Posted 4 hours ago</p>
+        </ion-label>
+
+        <ion-button slot="end" fill="clear" color="danger" (click)="toggleText(person.id)">
+          <ion-icon name="eye" *ngIf="person.show_content"></ion-icon>
+          <ion-icon name="eye-off" *ngIf="!person.show_content"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-img src="https://robohash.org/dpd?bgset=bg1"></ion-img>
+
+      <ion-card-content *ngIf="person.show_content" class="ion-padding-vertical">
+        {{ person.post }}
+      </ion-card-content>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="danger" fill="clear" size="small">
+            LIKE
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="danger" fill="clear" size="small">
+            COMMENT
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="danger" fill="clear" size="small">
+            SHARE
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </ion-list>
 
 
 </ion-content>
@@ -39,3 +77,5 @@
 
   </ion-toolbar>
 </ion-footer>
+
+
