@@ -7,6 +7,30 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  name: String = "KnowledgeHut";
+  favoriteColor: String = "secondary";
+
+  constructor() {
+    console.log("Hello from HomePage");
+    // this.name = "Samarth Agarwal";
+  }
+
+  getName(num: number): String {
+    if(num % 2 == 0) {
+      return "KnowledgeHut";
+    } else {
+      return "Samarth";
+    }
+  }
+
+  changeColor(): void {
+    if(this.favoriteColor == "danger") {
+      this.favoriteColor = "primary";
+    } else {
+      this.favoriteColor = "danger"
+    }
+  }
+
+
 
 }

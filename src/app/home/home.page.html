@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="danger">
+  <ion-toolbar [color]="favoriteColor">
     <ion-buttons slot="start">
       <ion-button>
         <ion-icon slot="icon-only" name="menu"></ion-icon>
@@ -7,11 +7,11 @@
     </ion-buttons>
 
     <ion-title>
-      KnowledgeHut
+      {{ getName(3) }}
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="changeColor()">
         <ion-icon name="settings-sharp" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -24,105 +24,12 @@
 
 <ion-content>
 
-  <ion-list lines="none">
-    <ion-card>
-
-      <!-- <ion-card-header> -->
-      <ion-item>
-        <ion-avatar slot="start">
-          <ion-img src="https://robohash.org/dpd1"></ion-img>
-        </ion-avatar>
-        <ion-label>
-          <h2>Suruchi Gupta</h2>
-          <p>Posted 4 hours ago</p>
-        </ion-label>
-      </ion-item>
-      <!-- </ion-card-header> -->
-
-      <ion-img src="https://robohash.org/dpd?bgset=bg1"></ion-img>
-
-      <ion-card-content class="ion-padding-horizontal">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores perferendis, excepturi quam nisi rerum?
-      </ion-card-content>
-
-
-      <!-- <ion-card-header> -->
-
-      <ion-row>
-        <ion-col size="4">
-          <ion-button expand="block" fill="clear" size="small">
-            LIKE
-          </ion-button>
-        </ion-col>
-        <ion-col size="4">
-          <ion-button expand="block" fill="clear" size="small">
-            COMMENT
-          </ion-button>
-        </ion-col>
-        <ion-col size="4">
-          <ion-button expand="block" fill="clear" size="small">
-            SHARE
-          </ion-button>
-        </ion-col>
-      </ion-row>
-
-      <!-- </ion-card-header>   -->
-
-    </ion-card>
-
-    <ion-card>
-      <!-- <ion-card-header>
-          <ion-avatar slot="start">
-            <ion-img src="https://robohash.org/1"></ion-img>
-          </ion-avatar>
-          <ion-card-title>Suruchi Gupta</ion-card-title>
-          <ion-card-subtitle>Posted 4 hours ago</ion-card-subtitle>
-        </ion-card-header> -->
-
-      <!-- <ion-card-header> -->
-      <ion-item>
-        <ion-avatar slot="start">
-          <ion-img src="../assets/dd.jpeg"></ion-img>
-        </ion-avatar>
-        <ion-label>
-          <h2>Damian Dunpphy</h2>
-          <p>Posted 5 hours ago</p>
-        </ion-label>
-      </ion-item>
-      <!-- </ion-card-header> -->
-
-      <ion-img src="https://robohash.org/1?bgset=bg1"></ion-img>
-
-      <ion-card-content>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores perferendis, excepturi quam nisi rerum?
-      </ion-card-content>
-
-      <ion-card-header>
-
-        <ion-row>
-          <ion-col>
-            <ion-button fill="clear" size="small">
-              LIKE
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button fill="clear" size="small">
-              COMMENT
-            </ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button fill="clear" size="small">
-              SHARE
-            </ion-button>
-          </ion-col>
-        </ion-row>
-
-      </ion-card-header>
-    </ion-card>
-
-  </ion-list>
-
-
+  <ion-item>
+    <ion-label position="floating">
+      Enter Color
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="favoriteColor"></ion-input>
+  </ion-item>
 
 
 </ion-content>
