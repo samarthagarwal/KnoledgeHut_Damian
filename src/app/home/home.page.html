@@ -24,51 +24,28 @@
 
 <ion-content>
 
-  <ion-list lines="none">
-    <ion-card *ngFor="let person of people">
+  <ion-radio-group [(ngModel)]="selectedPerson">
+    <ion-item *ngFor="let person of people">
+      <ion-label>{{ person.name }}</ion-label>
+      <ion-radio [value]="person"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  
+  <ion-item>
+    <ion-label>I accept the terms and conditions</ion-label>
+    <ion-checkbox [(ngModel)]="accepted"></ion-checkbox>
+  </ion-item>
 
-      <ion-item>
-        <ion-avatar slot="start">
-          <ion-img [src]="'https://robohash.org/' + person.profile_image"></ion-img>
-        </ion-avatar>
-        <ion-label>
-          <h2>{{ person.name }}</h2>
-          <p>Posted 4 hours ago</p>
-        </ion-label>
+  <ion-item>
+    <ion-label position="floating">Select a person</ion-label>
+    <ion-select [(ngModel)]="selectedPerson">
+      <ion-select-option *ngFor="let person of people" [value]="person">
+        {{ person.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
 
-        <ion-button slot="end" fill="clear" color="danger" (click)="toggleText(person.id)">
-          <ion-icon name="eye" *ngIf="person.show_content"></ion-icon>
-          <ion-icon name="eye-off" *ngIf="!person.show_content"></ion-icon>
-        </ion-button>
-      </ion-item>
-
-      <ion-img src="https://robohash.org/dpd?bgset=bg1"></ion-img>
-
-      <ion-card-content *ngIf="person.show_content" class="ion-padding-vertical">
-        {{ person.post }}
-      </ion-card-content>
-
-      <ion-row>
-        <ion-col>
-          <ion-button expand="block" color="danger" fill="clear" size="small">
-            LIKE
-          </ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button expand="block" color="danger" fill="clear" size="small">
-            COMMENT
-          </ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button expand="block" color="danger" fill="clear" size="small">
-            SHARE
-          </ion-button>
-        </ion-col>
-      </ion-row>
-
-    </ion-card>
-  </ion-list>
-
+  {{ selectedPerson | json }}
 
 </ion-content>
 

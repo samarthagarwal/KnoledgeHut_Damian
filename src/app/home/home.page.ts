@@ -7,11 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  showImage: boolean = false;
-
   people: any[] = [];
-
-  
 
   constructor(){
     this.people.push({
@@ -42,16 +38,6 @@ export class HomePage {
       "post": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, porro! Excepturi suscipit cumque ut voluptatem!",
       "show_content": true
     });
-  }
-
-  toggleText(id: number) {
-    for (let index = 0; index < this.people.length; index++) {
-      if(this.people[index].id == id) {
-        
-        this.people[index].show_content = !this.people[index].show_content;
-        break;
-      }
-    }
   }
 
 }
