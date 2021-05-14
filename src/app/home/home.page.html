@@ -24,13 +24,38 @@
 
 <ion-content>
 
-  <ion-button color="danger" expand="block" (click)="showLoading()">Show Loading</ion-button>
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="circles"
+      refreshingSpinner="circles" 
+      refreshingText="Updating data"
+    ></ion-refresher-content>
+  </ion-refresher>
 
-  <ion-button color="success" expand="block" (click)="showToast()">Show Toast</ion-button>
+  <ion-list>
+    <ion-item-sliding *ngFor="let customer of customers">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img [src]="customer.picture"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ customer.name }}</h2>
+          <p>Balance {{ customer.balance }}</p>
+        </ion-label>
+      </ion-item>
 
-  <ion-button color="secondary" expand="block" (click)="showAlert()">Show Alert</ion-button>
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="delete(customer)">
+          <ion-icon name="trash-sharp" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
-  <ion-button color="primary" expand="block" (click)="showActionSheet()">Show Action-Sheet</ion-button>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
 
 </ion-content>
 
