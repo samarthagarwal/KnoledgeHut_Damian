@@ -24,28 +24,13 @@
 
 <ion-content>
 
-  <ion-radio-group [(ngModel)]="selectedPerson">
-    <ion-item *ngFor="let person of people">
-      <ion-label>{{ person.name }}</ion-label>
-      <ion-radio [value]="person"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
-  
-  <ion-item>
-    <ion-label>I accept the terms and conditions</ion-label>
-    <ion-checkbox [(ngModel)]="accepted"></ion-checkbox>
-  </ion-item>
+  <ion-button color="danger" expand="block" (click)="showLoading()">Show Loading</ion-button>
 
-  <ion-item>
-    <ion-label position="floating">Select a person</ion-label>
-    <ion-select [(ngModel)]="selectedPerson">
-      <ion-select-option *ngFor="let person of people" [value]="person">
-        {{ person.name }}
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
+  <ion-button color="success" expand="block" (click)="showToast()">Show Toast</ion-button>
 
-  {{ selectedPerson | json }}
+  <ion-button color="secondary" expand="block" (click)="showAlert()">Show Alert</ion-button>
+
+  <ion-button color="primary" expand="block" (click)="showActionSheet()">Show Action-Sheet</ion-button>
 
 </ion-content>
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingController, ToastController, AlertController, ActionSheetController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,37 +8,116 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  people: any[] = [];
+  constructor(private loadingCtrl: LoadingController, private toastCtrl: ToastController, private alertCtrl: AlertController, private actionsheetCtrl: ActionSheetController, private platfrom: Platform){
+    
+  }
 
-  constructor(){
-    this.people.push({
-      "id": 1,
-      "name": "Samarth",
-      "profile_image": "1232",
-      "post": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, porro! Excepturi suscipit cumque ut voluptatem!",
-      "show_content": true
+  showLoading(): void {
+    this.loadingCtrl.create({
+      spinner: "circles",
+      message: "Loading..."
+    }).then((loading) => {
+      console.log("loading controller created!");
+
+      loading.present();
+
+      // fake network request for 3 seconds
+
+      setTimeout(() => {
+        loading.dismiss();
+      }, 3000);
+
+
+    }).catch((reason) => {
+      console.log("loading controller creation failed!");
+    }).finally(() => {
+      console.log("loading controller code executed!");
     });
-    this.people.push({
-      "id": 2,
-      "name": "Damian",
-      "profile_image": "1132",
-      "post": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, porro! Excepturi suscipit cumque ut voluptatem!",
-      "show_content": true
-    });
-    this.people.push({
-      "id": 3,
-      "name": "KnowledgeHut",
-      "profile_image": "1233",
-      "post": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, porro! Excepturi suscipit cumque ut voluptatem!",
-      "show_content": true
-    });
-    this.people.push({
-      "id": 4,
-      "name": "John",
-      "profile_image": "132",
-      "post": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, porro! Excepturi suscipit cumque ut voluptatem!",
-      "show_content": true
-    });
+  }
+
+  showToast(): void {
+    this.toastCtrl.create({
+      header: "Account Created",
+      message: "Your account has been created successfully.",
+      position: "bottom",
+      color: "danger",
+      buttons: [{
+        text: "Yeah",
+        icon: "checkmark-outline",
+        side: "end",
+        role: "success",
+        handler: () => {
+          console.log("You tapped on YEAH!");
+          return true;
+        }
+      }]
+    }).then((toast) => {
+      toast.present();
+    })
+  }
+
+  showAlert(): void {
+    this.alertCtrl.create({
+      header: "iCloud",
+      subHeader: "Enter your password",
+      message: "Please enter the password for your Apple ID to continue.",
+      inputs: [ {
+        type: "checkbox",
+        name: "remember",
+        label: "Remember Me",
+        handler: (input) => {
+          console.log(input.checked);
+        }
+      }],
+      buttons: [, {
+        text: "Continue",
+        handler: (data) => {
+          console.log(data);
+          if(data.password.length < 3) {
+            return false;
+          }
+        }
+      }, {
+        text: "Cancel",
+        role: "cancel"
+      }],
+      backdropDismiss: true
+    }).then((alert) => {
+      alert.present();
+    })
+  }
+
+  showActionSheet(): void {
+
+    this.actionsheetCtrl.create({
+      header: "Choose your color",
+      subHeader: "Select your favorite color from the list",
+      buttons: [{
+        text: "Red",
+        handler: () => {
+          console.log("You tapped on Red");
+        }
+      }, {
+        text: "Green",
+        handler: () => {
+          console.log("You tapped on Green");
+        }
+      }, {
+        text: "Blue",
+        handler: () => {
+          console.log("You tapped on Blue");
+        }
+      }, {
+        text: "Cancel",
+        role: "cancel",
+        handler: () => {
+          console.log("You tapped on Cancel");
+        }
+      }],
+      backdropDismiss: false
+    }).then((actionsheet) => {
+      actionsheet.present();
+    })
   }
 
 }
