@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ModalController, PopoverController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouteService } from '../route.service';
+import { AddModalPage } from '../add-modal/add-modal.page';
+import { MenuPage } from '../menu/menu.page';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ export class HomePage {
   customersBackup: any[] = [];
   customers: any[] = [];
 
-  constructor(private toastCtrl: ToastController, private router: Router, private routeService: RouteService){
+  constructor(private toastCtrl: ToastController, private router: Router, private routeService: RouteService, private modalCtrl:  ModalController, private popoverCtrl: PopoverController){
 
     this.customers = this.routeService.customers;
 
@@ -85,5 +87,53 @@ export class HomePage {
   navigateToOffice(customer: any) {
     this.routeService.setCustomer(customer);
     this.router.navigate(['/office'])
+  }
+
+  showAddDialog() {
+    this.modalCtrl.create({
+      component: AddModalPage,
+      componentProps: {
+        "name": "Samarth Agarwal"
+      },
+      swipeToClose: true
+    }).then((modal) => {
+
+      modal.onDidDismiss().then((data) => {
+        console.log(data);
+      })
+
+      modal.present();
+    })
+  }
+
+  showMenuPopover(ev) {
+    this.popoverCtrl.create({
+      component: MenuPage,
+      componentProps: {},
+      event: ev
+    }).then((popover) => {
+
+      popover.onDidDismiss().then((data) => {
+        console.log("You selected " + data.data.option);
+      })
+
+      popover.present();
+    })
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter called!");
+  }
+
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter called!");
+  }
+
+  ionViewWillLeave() {
+    console.log("ionViewWillLeave called!");
+  }
+
+  ionViewDidLeave() {
+    console.log("ionViewDidLeave called!");
   }
 }

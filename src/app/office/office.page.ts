@@ -10,7 +10,6 @@ import { RouteService } from '../route.service';
 })
 export class OfficePage implements OnInit {
 
-
   customer: any;
 
   constructor(private router: Router, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private routeService: RouteService) { 
@@ -18,8 +17,29 @@ export class OfficePage implements OnInit {
     this.customer = this.routeService.getCustomer();
     console.log(this.customer);
   }
+  
+  ngOnInit(): void {
+    console.log("ngOnInit called!");
+  }
+  
+  ngOnDestroy () {
+    console.log("ngOnDestroy called!");
+  }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter called!");
+  }
+
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter called!");
+  }
+
+  ionViewWillLeave() {
+    console.log("ionViewWillLeave called!");
+  }
+
+  ionViewDidLeave() {
+    console.log("ionViewDidLeave called!");
   }
 
   navigateBack() {
