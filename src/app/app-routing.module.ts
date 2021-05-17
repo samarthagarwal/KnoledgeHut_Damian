@@ -7,7 +7,16 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'office',
+    loadChildren: () => import('./office/office.module').then( m => m.OfficePageModule)
+  },
+  {
     path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
   },
