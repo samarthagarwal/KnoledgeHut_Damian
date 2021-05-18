@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RouteService } from '../route.service';
 import { AddModalPage } from '../add-modal/add-modal.page';
 import { MenuPage } from '../menu/menu.page';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,9 @@ export class HomePage {
 
   customersBackup: any[] = [];
   customers: any[] = [];
+
+  count: Observable<number>;
+  date: Date = new Date();
 
   constructor(private toastCtrl: ToastController, private router: Router, private routeService: RouteService, private modalCtrl:  ModalController, private popoverCtrl: PopoverController){
 
@@ -27,53 +31,31 @@ export class HomePage {
   }
 
   async executeOperations() {
-    // this.operation1().then((d) => {
-    //   console.log(d);
-    //   this.operation2().then((e) => {
-    //     this.operation3().then((f) => {
-    //       console.log("complete");
-    //     });
-    //   });
-    // }).catch((reason) => {
-    //   console.log("failed");
-    //   console.log(reason);
-    // });
 
-    try {
-      let d = await this.operation1();
-      console.log(d);
-      let e = await this.operation2();
-      let f = await this.operation3();
-    } catch(ex) {
-      console.log(ex);
-    } 
+    // this.operation1().subscribe((response: number) => {
+    //   this.count = response;
+    // })
+
+    this.count = this.operation1();
+    
   }
 
   operation1() {
-    return new Promise<string>((resolve, reject) => {
-      setTimeout(() => {
-        console.log("Operation1");
-        reject("404")
-      }, 1000)
-    });
-  }
 
-  operation2() {
-    return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log("Operation2");
-      resolve(true);
-    }, 101)
+    let count: number = 1;
+
+    return new Observable<number>((observer) => {
+      setInterval(() => {
+        observer.next(count);
+
+        count++;
+
+        if(count > 10) {
+          observer.complete();
+        }
+
+      }, 500)
     })
-  }
-
-  operation3() {
-    return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log("Operation3");
-      resolve(true);
-    }, 500)
-  });
   }
 
   delete(customer: any): void {
