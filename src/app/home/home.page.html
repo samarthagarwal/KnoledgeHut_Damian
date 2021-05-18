@@ -7,7 +7,7 @@
     </ion-buttons>
 
     <ion-title>
-      {{ date | date:'dd MMM' }} ({{ count | async }})
+      {{ 'kh' | uppercase}} ({{ date | date:'dd MMM yyyy' }})
     </ion-title>
 
     <ion-buttons slot="end">
@@ -37,7 +37,7 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let customer of customers" >
+    <ion-item-sliding *ngFor="let customer of customersData | async">
       <!-- <ion-item [routerLink]="['/office','123']"> -->
       <ion-item (click)="navigateToOffice(customer)">
         <ion-avatar slot="start">

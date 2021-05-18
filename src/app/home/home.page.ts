@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, PopoverController, ToastController } from '@ionic/angular';
+import { LoadingController, ModalController, PopoverController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RouteService } from '../route.service';
 import { AddModalPage } from '../add-modal/add-modal.page';
@@ -16,47 +16,32 @@ export class HomePage {
   customersBackup: any[] = [];
   customers: any[] = [];
 
-  count: Observable<number>;
+  customersData: Observable<any>;
   date: Date = new Date();
 
-  constructor(private toastCtrl: ToastController, private router: Router, private routeService: RouteService, private modalCtrl:  ModalController, private popoverCtrl: PopoverController){
+  constructor(private toastCtrl: ToastController, private router: Router, private routeService: RouteService, private modalCtrl:  ModalController, private popoverCtrl: PopoverController, private loadingCtrl: LoadingController){
+    this.initialize()
+  }
 
-    this.customers = this.routeService.customers;
+  async initialize() {
+
+    let loading = await this.loadingCtrl.create({
+      message: "Getting customers data...",
+      spinner: "circles"
+    });
+
+    loading.present();
+
+    this.customersData = await this.routeService.getCustomers();
 
     for (let index = 0; index < this.customers.length; index++) {
       this.customersBackup.push(this.customers[index]);
     }
 
-    this.executeOperations();
+    loading.dismiss();
   }
 
-  async executeOperations() {
 
-    // this.operation1().subscribe((response: number) => {
-    //   this.count = response;
-    // })
-
-    this.count = this.operation1();
-    
-  }
-
-  operation1() {
-
-    let count: number = 1;
-
-    return new Observable<number>((observer) => {
-      setInterval(() => {
-        observer.next(count);
-
-        count++;
-
-        if(count > 10) {
-          observer.complete();
-        }
-
-      }, 500)
-    })
-  }
 
   delete(customer: any): void {
 
