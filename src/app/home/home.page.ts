@@ -22,6 +22,58 @@ export class HomePage {
     for (let index = 0; index < this.customers.length; index++) {
       this.customersBackup.push(this.customers[index]);
     }
+
+    this.executeOperations();
+  }
+
+  async executeOperations() {
+    // this.operation1().then((d) => {
+    //   console.log(d);
+    //   this.operation2().then((e) => {
+    //     this.operation3().then((f) => {
+    //       console.log("complete");
+    //     });
+    //   });
+    // }).catch((reason) => {
+    //   console.log("failed");
+    //   console.log(reason);
+    // });
+
+    try {
+      let d = await this.operation1();
+      console.log(d);
+      let e = await this.operation2();
+      let f = await this.operation3();
+    } catch(ex) {
+      console.log(ex);
+    } 
+  }
+
+  operation1() {
+    return new Promise<string>((resolve, reject) => {
+      setTimeout(() => {
+        console.log("Operation1");
+        reject("404")
+      }, 1000)
+    });
+  }
+
+  operation2() {
+    return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("Operation2");
+      resolve(true);
+    }, 101)
+    })
+  }
+
+  operation3() {
+    return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("Operation3");
+      resolve(true);
+    }, 500)
+  });
   }
 
   delete(customer: any): void {
