@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { RouteService } from '../route.service';
 import { AddModalPage } from '../add-modal/add-modal.page';
 import { MenuPage } from '../menu/menu.page';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Plugins, CameraResultType, CameraDirection, CameraOptions } from '@capacitor/core';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +19,12 @@ export class HomePage {
 
   customersData: Observable<any>;
   date: Date = new Date();
+  location: import("/Users/samarthagarwal/Desktop/KnowledgeHut/KnowledgeHut/node_modules/@capacitor/core/dist/esm/core-plugin-definitions").GeolocationPosition;
+  base64: string;
 
   constructor(private toastCtrl: ToastController, private router: Router, private routeService: RouteService, private modalCtrl:  ModalController, private popoverCtrl: PopoverController, private loadingCtrl: LoadingController){
     this.initialize()
+    this.setupGeolocation();
   }
 
   async initialize() {
@@ -41,7 +45,34 @@ export class HomePage {
     loading.dismiss();
   }
 
+  async setupGeolocation() {
+    const { Geolocation } = Plugins;
 
+    this.location = await Geolocation.getCurrentPosition();
+
+    let toast = await this.toastCtrl.create({
+      message: "Your location is (" + this.location.coords.latitude + ", " + this.location.coords.longitude + ")",
+      duration: 5000
+    });
+
+    toast.present();
+  }
+
+  async takePhoto() {
+    const { Camera } = Plugins;
+
+    let cameraOptions: CameraOptions = {
+      quality: 50,
+      direction: CameraDirection.Rear,
+      resultType: CameraResultType.Base64,
+      width: 512,
+      height: 512,
+    }
+
+    let photo =  (await Camera.getPhoto(cameraOptions));
+    console.log(photo);
+    this.base64 = photo.base64String;
+  }
 
   delete(customer: any): void {
 

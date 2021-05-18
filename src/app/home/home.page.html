@@ -18,6 +18,10 @@
       <ion-button (click)="showMenuPopover($event)">
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
       </ion-button>
+
+      <ion-button (click)="setupGeolocation()">
+        <ion-icon slot="icon-only" name="locate"></ion-icon>
+      </ion-button>
     </ion-buttons>
 
   </ion-toolbar>
@@ -35,6 +39,10 @@
       refreshingText="Updating data"
     ></ion-refresher-content>
   </ion-refresher>
+
+  <ion-card *ngIf="base64">
+    <ion-img [src]="'data:image/jpeg;base64,' + base64"></ion-img>
+  </ion-card>
 
   <ion-list>
     <ion-item-sliding *ngFor="let customer of customersData | async">
@@ -65,8 +73,9 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
 
+  <ion-toolbar>
+    <ion-button expand="block" color="danger" (click)="takePhoto()"> Take Picture </ion-button>
   </ion-toolbar>
 </ion-footer>
 

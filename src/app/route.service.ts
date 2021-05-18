@@ -20,7 +20,7 @@ export class RouteService {
     // this.customers = customersData;
     // return customersData;
 
-    let customersObs = this.httpClient.get("http://www.json-generator.com/api/json/get/bPJDNOEfVK?indent=2");
+    let customersObs = this.httpClient.get("https://www.json-generator.com/api/json/get/bPJDNOEfVK?indent=2");
     return customersObs;
 
   }
